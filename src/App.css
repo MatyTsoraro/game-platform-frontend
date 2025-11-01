@@ -1,38 +1,136 @@
-.App {
-  text-align: center;
+.hero-section {
+ background: linear-gradient(90deg, #7f53ac 0%, #647dee 100%);
+ text-align: center;
+ padding: 80px 0;
+ color: #fff;
+ box-shadow: 0 2px 24px rgba(0, 0, 0, 0.2);
+ border-radius: 18px;
+ margin: 30px;
+ margin-top: 40px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.upload-btn {
+ font-size: 1.3rem;
+ padding: 18px 34px;
+ background: #5de0e6;
+ border: none;
+ border-radius: 14px;
+ box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+ cursor: pointer;
+ transition: transform 0.18s;
+ margin-top: 20px;
+ color: #222;
+ font-weight: bold;
+ display: inline-flex;
+ align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.upload-btn:hover {
+ background: #6457c6;
+ color: #fff;
+ transform: scale(1.09);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.main-nav {
+ display: flex;
+ justify-content: center;
+ background: #f8f8fa;
+ padding: 12px 0;
+ font-size: 1.15rem;
+ margin-bottom: 0;
+ box-shadow: 0 1px 8px rgba(130, 130, 180, 0.14);
+ border-radius: 0 0 14px 14px;
 }
 
-.App-link {
-  color: #61dafb;
+.main-nav a {
+ color: #6245dc;
+ font-weight: bold;
+ text-decoration: none;
+ margin: 0 9px;
+}
+.main-nav a:hover {
+ text-decoration: underline;
+ color: #5de0e6;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Modal Styles */
+.modal-overlay {
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100vw;
+ height: 100vh;
+ background: rgba(30, 30, 40, 0.65);
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ z-index: 10;
+}
+
+.modal-box {
+ background: #fff;
+ padding: 32px 28px;
+ border-radius: 13px;
+ box-shadow: 0 4px 32px rgba(80, 50, 230, 0.23);
+ min-width: 330px;
+ max-width: 98vw;
+ position: relative;
+ text-align: left;
+ animation: scaleIn 0.23s cubic-bezier(0.32, 0.71, 0.51, 1.35);
+}
+
+@keyframes scaleIn {
+ 0% {
+  transform: scale(0.85);
+  opacity: 0;
+ }
+ 100% {
+  transform: scale(1);
+  opacity: 1;
+ }
+}
+
+.modal-box h2 {
+ margin-top: 0;
+ margin-bottom: 20px;
+ color: #6245dc;
+}
+
+.modal-box form {
+ display: flex;
+ flex-direction: column;
+ gap: 10px;
+}
+
+.modal-box form label {
+ display: flex;
+ flex-direction: column;
+ font-size: 1em;
+ margin-bottom: 2px;
+ color: #3c38a6;
+}
+
+.modal-box input[type="text"],
+.modal-box textarea,
+.modal-box input[type="file"] {
+ width: 100%;
+ box-sizing: border-box;
+ margin-top: 5px;
+ margin-bottom: 0;
+ font-size: 1em;
+ border: 1.5px solid #dad4ec;
+ border-radius: 6px;
+ padding: 7px 8px;
+}
+
+.close-btn {
+ position: absolute;
+ top: 8px;
+ right: 14px;
+ background: none;
+ border: none;
+ color: #6457c6;
+ font-weight: bold;
+ font-size: 1.12em;
+ cursor: pointer;
 }
