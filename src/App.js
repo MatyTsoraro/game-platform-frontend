@@ -42,17 +42,23 @@ function UploadModal({ open, onClose }) {
  );
 }
 
-// Hero Section for Home Page
+// HERO SECTION משודרג
 function Home({ onUploadClick }) {
  return (
   <div className="hero-section">
-   <h1>Game Platform</h1>
-   <p>Your place to upload and play awesome games!</p>
-   <p style={{ marginTop: "14px" }}>
-    Developers, upload your game and share it with the world!
-    <br />
-    Players, discover new indie games every day!
-   </p>
+   <h1 className="hero-title">
+    <span className="hero-glow">Game Platform</span>
+   </h1>
+   <div className="hero-subtext">
+    Your place to upload and play <span className="highlight">awesome</span>{" "}
+    games! <br />
+    <span className="hero-mission">
+     Developers, <span className="highlight">upload</span> and share your games.
+     <br />
+     Players, <span className="highlight">discover</span> new indie hits every
+     day!
+    </span>
+   </div>
    <button className="upload-btn" onClick={onUploadClick}>
     <FaCloudUploadAlt
      style={{ marginRight: 9, fontSize: "1.3em", verticalAlign: "middle" }}
@@ -63,6 +69,7 @@ function Home({ onUploadClick }) {
  );
 }
 
+// גלריית קלפים לפי קטגוריות
 function Games() {
  const [games, setGames] = useState([]);
  useEffect(() => {
@@ -71,14 +78,35 @@ function Games() {
    .then((data) => setGames(data))
    .catch((err) => console.error("Error:", err));
  }, []);
+ // ייצור קטגוריות ייחודיות
+ const categories = Array.from(
+  new Set(games.map((game) => game.category || "Other"))
+ );
  return (
-  <div>
-   <h2>Games Page</h2>
-   <ul>
-    {games.map((game) => (
-     <li key={game.id}>{game.title}</li>
-    ))}
-   </ul>
+  <div className="games-container">
+   <h2 className="games-title">Games Gallery</h2>
+   {categories.map((category) => (
+    <div key={category}>
+     <h3 className="category-title">{category}</h3>
+     <div className="games-grid">
+      {games
+       .filter((game) => (game.category || "Other") === category)
+       .map((game) => (
+        <div className="game-card" key={game.id}>
+         <div className="game-img-demo">
+          <span role="img" aria-label="game" className="emoji-demo">
+           🎲
+          </span>
+         </div>
+         <div className="game-details">
+          <div className="game-title">{game.title}</div>
+          {game.category && <div className="game-cat">{game.category}</div>}
+         </div>
+        </div>
+       ))}
+     </div>
+    </div>
+   ))}
   </div>
  );
 }
@@ -88,9 +116,18 @@ function App() {
  return (
   <Router>
    <nav className="main-nav">
-    <Link to="/">Home</Link>
-    <span> | </span>
-    <Link to="/games">Games</Link>
+    <div className="nav-left">
+     <span className="logo">🎮 GameWorld</span>
+     <Link to="/">Home</Link>
+     <Link to="/games">Games</Link>
+     <a href="https://armorgames.com" target="_blank" rel="noopener noreferrer">
+      Armor Games
+     </a>
+    </div>
+    <div className="nav-right">
+     <button className="nav-btn login-btn">Login</button>
+     <button className="nav-btn signup-btn">Sign Up</button>
+    </div>
    </nav>
    <Routes>
     <Route
